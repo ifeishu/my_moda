@@ -18,6 +18,11 @@ export default {
         return{
             model:{}
         }
+    },
+    methods:{
+        save(){
+            
+        }
     }
 }
 </script>
