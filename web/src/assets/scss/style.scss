@@ -1,0 +1,170 @@
+@import './variables.scss';
+//reset
+* {
+    box-sizing:border-box;
+    outline:none;
+}
+html {
+    font-size:13px;
+}
+body {
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height: 1.2em;
+    background:#f1f1f1;
+    -webkit-font-smoothing:antialiased;
+}
+a {
+    color:#999;
+}
+
+//colors
+
+@each $colorKey,$color in $colors{
+    .text-#{$colorKey}{
+        color:$color;
+    }
+    .bg-#{$colorKey}{
+        background-color:$color;
+    }
+}
+//text
+@each $var in (left,center,right){
+.text-#{$var}{
+    text-align:$var !important;
+ }
+}
+
+//font size
+
+@each $sizeKey,$size in $font-size{
+    .fs-#{$sizeKey}{
+        font-size:$size*$base-font-size;
+    }
+}
+
+//width,height
+.w-100{
+    width:100%;
+}
+.h-100{
+    height:100%;
+}
+
+//flex
+.d-flex{
+    display:flex;
+}
+.flex-column{
+    flex-direction: column;
+}
+.flex-wrap{
+    flex-wrap:wrap;
+}
+
+@each $key,$value in $flex-jc{
+    .jc-#{$key}{
+        justify-content:$value;
+    }
+}
+
+
+@each $key,$value in $flex-ai{
+    .ai-#{$key}{
+        align-items:$value;
+    }
+}
+
+.flex-1{
+    flex:1;
+}
+// .flex-grow-1{
+//     flex-grow:1;
+// }
+
+//spacing
+//0-5:
+//.mt-1 =>margin top :1   pd-2=>padding-top:
+
+
+@each $typeKey,$type in $spacing-types{
+    //m-1
+    @each $sizeKey,$size in $spacing-sizes{
+        .#{$typeKey}-#{$sizeKey}{
+            #{$type}:$size*$spacing-base-size;
+        }
+    }
+    //.mx-1 .my-1
+    @each $sizeKey,$size in $spacing-sizes{
+        .#{$typeKey}x-#{$sizeKey}{
+            #{$type}-left:$size*$spacing-base-size;
+            #{$type}-right:$size*$spacing-base-size;
+        }
+
+        .#{$typeKey}y-#{$sizeKey}{
+            #{$type}-top:$size*$spacing-base-size;
+            #{$type}-bottom:$size*$spacing-base-size;
+        }
+    } 
+
+    //mt-1
+    @each $direnctionKey,$direnction in $spacing-direnctions{
+        @each $sizeKey,$size in $spacing-sizes{
+            .#{$typeKey}#{$direnctionKey}-#{$sizeKey}{
+                #{$type}-#{$direnction}:$size*$spacing-base-size;
+            }
+        }
+    }
+}
+
+// botton
+.btn{
+    border:none;
+    border-radius:0.1538rem;
+    font-size:map-get($font-size,'sm')* $base-font-size;
+    padding:0.2rem 0.6rem;
+}
+
+//nav
+.nav{
+    display:flex;
+    
+    .nav-item{
+        border-bottom:3px solid transparent;
+        padding-bottom: 0.1rem;
+       
+        &.active{ 
+            color:map-get($colors,'primary');
+            border-bottom:3px solid map-get($colors,'primary');
+        }
+    }
+    &.nav-inverse{
+        .nav-item{
+            color:map-get($colors,'white');
+            &.active{
+                border-bottom-color:map-get($colors,'white' )
+            }
+        }
+    }
+}
+
+ .sprite{
+    background:url(../images/index.png) no-repeat 0 0;
+    background-size:28.8462rem;
+    display:inline-block;
+    &.sprite-news{
+        width: 2.4615rem;
+        height:1.5rem;
+        background-position:63.546% 15.517%;
+    }
+    &.sprite-stories{
+        width: 3.5385rem;
+        height: 3rem;
+        background-position:90.483% 15.614%;
+    }
+    &.sprite-arrow{
+        width: 1.4615rem;
+    height: 0.6615rem;
+    background-position: 38.577% 52.076%;
+    }
+}
